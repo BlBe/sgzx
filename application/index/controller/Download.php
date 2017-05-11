@@ -12,6 +12,6 @@ namespace app\index\controller;
 class Download extends Common
 {
     public function download(){
-        $this->success("正在跳往下载","http://git.oschina.net/ModCat/sgzx1");
+        $this->success("正在跳往下载","https://github.com/BlBe/sgzx/");
     }
 }
