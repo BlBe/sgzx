@@ -23,16 +23,28 @@
     <link rel="stylesheet" href="static/index/index.css">
 
     <script>
-        $(window).resize(function (){
-            if($("#accordion").height() < $(document).height() - $(".top").height() - $(".foot").height() - 40){
-                $("#accordion").height($(document).height() - $(".top").height() - $(".foot").height() - 40);
-            }
-        });
+
         $(document).ready(function(){
-            if($("#accordion").height() < $(document).height() - $(".top").height() - $(".foot").height() - 40){
-                $("#accordion").height($(document).height() - $(".top").height() - $(".foot").height() - 40);
+//            if($("#accordion").height() < $(document).height() - $(".top").height() - $(".foot").height() - 40){
+//                $("#accordion").height($(document).height() - $(".top").height() - $(".foot").height() - 40);
+//            }
+            $("#accordion").css("min-height",$(document).height() - $(".top").height() - $(".foot").height() - 22);
+            var min_height = $(document).height();
+        });
+
+        $(window).resize(function (){
+
+            if($("#accordion").css("min-height") > min_height){
+                $("#accordion").css("min-height",0);
+                $("#accordion").css("min-height",$(document).height() - $(".top").height() - $(".foot").height() - 22);
+            }else{
+                $("#accordion").css("min-height",$(document).height() - $(".top").height() - $(".foot").height() - 22);
             }
         });
+
+
+
+
     </script>
 
 </head>

@@ -56,7 +56,13 @@ class Index extends Controller
 
     //开放注册
     public function open(){
-        return $this->fetch('open');
+        if(session("user.student_id")){
+            $info = session("user");
+            $data = ['fun' => 1 , 'data' => $info];
+        }else{
+            $data = ['fun' => 0];
+        }
+        return $this->fetch('open',$data);
     }
 
     //判断方法
