@@ -33,13 +33,18 @@
         });
 
         $(window).resize(function (){
-
-            if($("#accordion").css("min-height") > min_height){
+            
                 $("#accordion").css("min-height",0);
                 $("#accordion").css("min-height",$(document).height() - $(".top").height() - $(".foot").height() - 22);
-            }else{
-                $("#accordion").css("min-height",$(document).height() - $(".top").height() - $(".foot").height() - 22);
-            }
+
+
+//            if($("#accordion").css("min-height") > min_height ){
+//                $("#accordion").css("min-height",0);
+//                $("#accordion").css("min-height",$(document).height() - $(".top").height() - $(".foot").height() - 22);
+//            }else{
+//                $("#accordion").css("min-height",$(document).height() - $(".top").height() - $(".foot").height() - 22);
+//            }
+
         });
 
 
