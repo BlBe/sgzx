@@ -16,3 +16,4 @@ Route::any('/login','index/login');
 Route::any('/quit','index/quit');
 Route::any('/search','index/search');
 Route::any('/Github','GitHub/github');
+Route::any('/open','index/open');

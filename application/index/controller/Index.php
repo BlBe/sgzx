@@ -54,6 +54,9 @@ class Index extends Controller
         $this->success('退出成功','/');
     }
 
+    //开放注册
+    public function open(){
+    }
 
     //判断方法
     function job($num){
