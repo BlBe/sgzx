@@ -15,4 +15,4 @@ Route::any('/admin','admin/admin/admin');
 Route::any('/login','index/login');
 Route::any('/quit','index/quit');
 Route::any('/search','index/search');
-Route::any('/download','download/download');
+Route::any('/GitHub','github/github');
