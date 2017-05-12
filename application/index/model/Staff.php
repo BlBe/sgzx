@@ -44,7 +44,7 @@ class Staff extends Model
             return ['valid' => 0, 'msg' => $validate->getError()];
         }
         $search_content = $data['search'];
-        $search = $this->where('id>100')->where("student_id like'%$search_content%' or student_phone like'%$search_content%' or name like'%$search_content%'")->find();
+        $search = $this->where('id>100')->where("student_id like'%$search_content%' or student_phone like'%$search_content%' or name like'%$search_content%'")->select();
         if(!$search){
             return ['valid' => 0, 'msg' => '输入的内容搜索不到结果'];
         }else{
