@@ -56,6 +56,7 @@ class Index extends Controller
 
     //开放注册
     public function open(){
+        return $this->fetch('open');
     }
 
     //判断方法
