@@ -16,7 +16,7 @@ class Common extends Controller
     {
         parent::__construct($request);
         if(!session("user.student_id")){
-            $this->redirect("/");
+            $this->error("请登录后重试",'/');
         }
     }
 

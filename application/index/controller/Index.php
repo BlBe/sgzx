@@ -18,6 +18,10 @@ class Index extends Controller
             $data = ['fun' => 0];
         }
 
+        //获取值班表
+        $duty = db('duty')->find();
+        $data['duty'] = $duty;
+
         //加载视图，并传输$data到视图中去
         return $this->fetch('index',$data);
     }
@@ -29,7 +33,15 @@ class Index extends Controller
             $res = (new Staff())->login(input('post.'));
             if($res['valid']){
                 //登录成功
-                $this->success($res['msg'],'/');
+
+                //将 Session 中的数据修改为可直接使用数据
+                $job = $this->job(session("user.job"));
+                $branch = $this->branch(session("user.branch"));
+
+                Session::set('user.job',$job);
+                Session::set('user.branch',$branch);
+
+                $this->success($res['msg'],'/','','1');
             }else{
                 //登录失败
                 $this->error($res['msg']);exit;
@@ -67,44 +79,71 @@ class Index extends Controller
 
     //判断方法
     function job($num){
+
+        $job = null;
+
         switch ($num){
             case 1 :
-                return "主席";
+                $job =  "主席";
+                break;
             case 2 :
-                return "副主席";
+                $job =  "副主席";
+                break;
             case 3 :
-                return "秘书长";
+                $job =  "秘书长";
+                break;
             case 4 :
-                return "部长";
+                $job =  "部长";
+                break;
             case 5 :
-                return "副部长";
+                $job =  "副部长";
+                break;
             case 6 :
-                return "干部";
+                $job =  "干部";
+                break;
             case 7 :
-                return "部员";
+                $job =  "部员";
+                break;
             case 8 :
-                return "考核期";
+                $job =  "考核期";
+                break;
             case 0 :
-                return "管理员";
+                $job =  "管理员";
+                break;
         }
+
+        return $job;
     }
 
-    function branch($num){
-        switch ($num){
+    function branch($num)
+    {
+
+        $branch = null;
+
+        switch ($num) {
             case 1 :
-                return "主席团";
+                $branch = "主席团";
+                break;
             case 2 :
-                return "生活部";
+                $branch = "生活部";
+                break;
             case 3 :
-                return "纪检部";
+                $branch = "纪检部";
+                break;
             case 4 :
-                return "秘书部";
+                $branch = "秘书部";
+                break;
             case 5 :
-                return "宣传部";
+                $branch = "宣传部";
+                break;
             case 6 :
-                return "信息资源部";
+                $branch = "信息资源部";
+                break;
             case 0 :
-                return "管理组";
+                $branch = "管理组";
+                break;
         }
+
+        return $branch;
     }
 }

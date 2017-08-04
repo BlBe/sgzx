@@ -26,9 +26,9 @@ class Staff extends Model
             return ['valid' => 0, 'msg' => $validate->getError()];
         }
         //比对用户登录操作是否正确
-        $userInfo = $this->where('student_id', $data['login_name'])->where('student_password', md5($data['login_password']))->find();  //成功返回对象,失败返回NULL
+        $userInfo = $this->where('student_id', $data['login_name'])->where('student_password', md5($data['login_password']))->find()->toArray();  //成功返回对象,失败返回NULL
         if (!$userInfo) {
-            $userInfo = $this->where('student_phone', $data['login_name'])->where('student_password', md5($data['login_password']))->find();
+            $userInfo = $this->where('student_phone', $data['login_name'])->where('student_password', md5($data['login_password']))->find()->toArray();
             if (!$userInfo) {
                 return ['valid' => 0, 'msg' => '学号或手机或密码不正确，请重试'];
             }
@@ -44,7 +44,7 @@ class Staff extends Model
             return ['valid' => 0, 'msg' => $validate->getError()];
         }
         $search_content = $data['search'];
-        $search = $this->where('id>100')->where("student_id like'%$search_content%' or student_phone like'%$search_content%' or name like'%$search_content%'")->select();
+        $search = $this->where('id>100')->where("student_id like'%$search_content%' or student_phone like'%$search_content%' or name like'%$search_content%'")->select()->toArray();
         if(!$search){
             return ['valid' => 0, 'msg' => '输入的内容搜索不到结果'];
         }else{
